@@ -671,7 +671,7 @@ public class MarkerControlEditor : Editor
         if (mc.feature == Markers.ControlType.Time)
             EditorGUILayout.PropertyField(trigger);
 
-        if (mc.feature == Markers.ControlType.Element)
+        if (mc.feature == Markers.ControlType.Object)
         {
             EditorGUILayout.PropertyField(withPeople);
             EditorGUILayout.PropertyField(withPeoploids);
