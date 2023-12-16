@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Publish Project</title>
+     <link rel="stylesheet" href="../darkmode.css" />
+   <style type="text/css">
+        .auto-style1 {
+            width: 595px;
+            align-content:start
+        }
+        .auto-style2 {
+            width: 250px;
+            vertical-align:top
+        }
+    </style>
+</head>
+<body>
+    <h1>Publishing project</h1>
+    <p>The Publish Project component contains data necessary to present your project online. This component is attached to the object Rig in your scene.</p>
+    <table style="width:70%">
+        <tr>
+            <td class="auto-style1">
+                <ul>
+                    <li><b>Title</b>: the title of the project.</li>
+                    <li><b>Author</b>: the creator(s) of the project.</li>
+                    <li><b>Id</b>: the ID of the project (by default it show the date and time of the projects creation). You can write your own or create new ID by clicking on New ID button. Please note the this ID is used to differentiate between projects by the servers. </li>
+                    <li><b>Server IP</b>: the IP address of the server.</li>
+                    <li><b>Server Port</b>: the Port of the server used for updates during the play mode. Alternatively, you can pick colors in Color Steps (if you use this mode, the text-based steps won’t be read)</li>
+                    <li><b>Alt Port</b>: this Port is used for email request and connections outside the play mode. </li>
+                    <li><b>Email</b>: the email to which the project status (surveys) is sent. </li>
+                    <li><b>Description</b>: project’s description. </li>
+                    <li><b>New ID</b>: generates a new ID reflecting the date and time. </li>
+                    <li><b>Token</b>: a token given to you by the server's manager. This token is necessary for the server to register your project and properly send you the survey results of online projects. </li>
+                    <li><b>Register</b>: registers the project ID and email with the server, using the token. </li>
+                    <li><b>Final Publish</b>: creates a "bundle" from the project that can be opened in another computer via the Folly Hub software. After creating the bundle, it will ask you for a destination where it copies and archives the data in a ZIP file named after the project’s ID. This file should be extracted as is (not in a new folder) in the Projects folder of Folly Hub on your or another PC. </li>
+                 </ul>
+               
+
+            </td>
+            <td class="auto-style2"><img alt="Publish Project" src="../Images/mpublish.png" /> </td>
+        </tr>
+    </table>
+</body>
+</html>

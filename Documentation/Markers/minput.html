@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Input Settings</title>
+    <link rel="stylesheet" href="../darkmode.css" />
+    <style type="text/css">
+        .auto-style1 {
+            width: 595px;
+            align-content:start
+        }
+        .auto-style2 {
+            width: 250px;
+            vertical-align:top
+        }
+    </style>
+</head>
+<body>
+    <h1>Input Setting</h1>
+    <p>Input settings allow you to set when a control should be activated.  </p>
+    <table style="width:70%">
+        <tr>
+            <td class="auto-style1">
+                <ul>
+                    <li><b>Max Distance</b>: the maximum distance between a person and the object containing this element, by which the control would be valid. If set to 0 or less, it will be ignored.</li>
+                    <li><b>Max Angle</b>: the maximum angle between the person’s looking direction (or an person-oid object) and to the object or an axis (see below) that permits the control. If set to 0 or less, it will be ignored.</li>
+                    <li><b>Axis</b>: a local axis of the object that is used to calculate the angle between a person and that objecct (see above). </li>
+                    <li><b>Aux key</b>: this is a key (alt, shift or ctrl) that if hold, Tames checks if the Key(s) is pressed. </li>
+                    <li><b>Key</b>: the duration of progress in seconds. A negative duration means the progress will have the same duration/speed as its parent. A zero duration means it will exactly follow its parent progress value.</li>
+                    <li><b>Aux Gamepad</b>: the lerping of the progress change. </li>
+                    <li><b>Gameapd</b>: element is active when the play mode begins. </li>
+                    <li><b>Aux VR</b>: the lerping of the progress change. </li>
+                    <li><b>Controller</b>: element is active when the play mode begins. </li>
+                </ul>
+            </td>
+            <td class="auto-style2"><img alt="Input setting" src="../Images/minput.png" /> </td>
+        </tr>
+    </table>
+</body>
+</html>

@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Marker Control</title>
+    <link rel="stylesheet" href="../darkmode.css" />
+    <style type="text/css">
+        .auto-style1 {
+            width: 595px;
+            vertical-align:top
+       }
+        .auto-style2 {
+            width: 250px;
+            vertical-align:top
+        }
+    </style>
+
+</head>
+<body>
+     <h1>Update basis (Marker Control)</h1>
+     <p>To add and remove Markers see <a href="mindex.html#addremove">Add and Remove Components</a></p>
+  <p>Marker Control component sets update controls for certain properties. It is possible to have more than one component for each element. </p>
+    <table style="width:70%">
+        <tr>
+            <td class="auto-style1">
+                <ul>
+                    <li><b>Feasture</b>: the update basis that can be Manual, Element, Object or Time. Selecting any of them changes the other visible options.</li>
+                    <li><b>Type</b>: the type of property that is controlled by the input (Progress, Activation, Visibility or Altering).</li>
+                    <li><i>Manual</i> </li>
+                    <li><b>... Control</b>: The location and input settings for activating the control (see <a href="minput.html">Input settings</a>). </li>
+                    <li><i>Time</i> </li>
+                    <li><b>... Interval</b>: . </li>
+                    <li><b>... Trigger</b>: the activation trigger of the element (see <a href="../Tames/ttwork.html#trgger.">Trigger</a>).</li>
+                    <li><i>Element</i></li>
+                    <li><b>... Parent</b>: the update parent of this element (and which the trigger will be applied by). </li>
+                    <li><b>... Trigger</b>: the activation trigger of the element (see <a href="../ttwork.html#trgger.">Trigger</a>). </li>
+                    <li><i>Object</i></li>
+                    <li><b>... With people</b>: the mover in the element will track human players (this only works for 3D elements). </li>
+                    <li><b>... With peoploid</b>: the mover in the element will track humanoid objects (this only works for 3D elements). See <a href="mperson.html">Virtual Persons</a>.</li>
+                    <li><b>... Trackables</b>: the list of objects that the mover can track. </li>              
+                </ul>
+            </td>
+            <td class="auto-style2">
+                <p><img alt="Input setting" src="../Images/mcontrolmanual.png" /></p>
+                <p><img alt="Input setting" src="../Images/mcontroltime.png" /></p>
+                 <p><img alt="Input setting" src="../Images/mcontrolelement.png" /></p>
+              <p><img alt="Input setting" src="../Images/mcontrolobject.png" /></p>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

@@ -1,0 +1,20 @@
+﻿body {
+    background-color: #f3ead3;
+    color: black;
+    max-width: 900px;
+    margin:auto;
+    position: relative;
+    align-self: center
+}
+
+a:link {
+    color: royalblue;
+    background-color: transparent;
+    text-decoration: none;
+}
+
+a:visited {
+    color: indianred;
+    background-color: transparent;
+    text-decoration: none;
+}

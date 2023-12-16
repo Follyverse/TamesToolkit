@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Follyverse and Tames Documentation</title>
+    <link rel="stylesheet" href="darkmode.css" />
+    <style type="text/css">
+        .tblrow1 {
+            width:220px;
+             height:100px;
+        }          
+        .tblrow2 {
+           width:fit-content;
+           text-align:center;
+       }   
+        .container {            
+            height:100px;
+        }        
+    </style>
+</head>
+<body>
+    
+    <table style="width:100%">
+        <tr>
+            <td class="tblrow1"><a href="https://www.fa.cvut.cz/en/faculty/organisational-structure/institutes/135-department-of-architectural-modelling"><img alt="CVUT logo" src="Images/cvut-logo.png" class="container"/></a></td>
+            <td class="tblrow2">
+                <table style="width:100%">
+                    <tr><td style="font-size:30px"><b>Tames Toolkit and Follyverse</b></td></tr>
+                    <tr><td>by Molab, Department of Architectural Modelling</td></tr>
+                    <tr><td>Faculty of Architecture</td></tr>
+                </table></td>
+            <td class="tblrow1"><img alt="Tames logo" src="Images/tames-square.png" class="container" /> <img alt="Tames logo" src="Images/folly-square.png" class="container" /></td>
+         </tr>
+    </table>
+    <h1>Introduction</h1>
+    <p>Follyverse and Tames are the outputs of a postdoctoral project at MoLab, Department of Digital Modelling, within the Faculty of Architecture of Czech Technical University, Prague. Their purpose is to enable architectural researchers and students to create and publish interactive, immersive and dynamic presentation and 3D surveys without worrying about the complexities of graphics and gaming programming.</p>
+    <p>The project started with Tames, a toolkit in Unity that was named so as it supposedly <i>tamed</i> game objects (hence, its original basic class was <i>Tame</i>Object, a naming convention which remained and spread to other classes). Please bear with this naming :). Then, to modularise its web access, the Follyverse was added. Follyverse is the collective title for two Unity projects Folly Server and Folly Hub. The latter is a dedicated server app and the latter is an interface to run Tames' exported projects offline or online. The name <i>Folly</i> was selected because at that stage of the project, the presumption was that only one building/project will be loaded at a time without its context (hence a folly, in architectural sense). </p>
+    
+    <h2>What do you need?</h2>
+    <p>The better question would be <b>"what would you like to do?"</b>. There are a few possibilities:
+        <ul>
+            <li><b>Creating</b> projects: if you only wish to create projects, you don't need to bother with Follyverse. Only check <a href="#tames">Tames Toolkit</a> below.</li>
+            <li><b>Viewing</b> projects: for viewing Tames projects created by others, you'd better use <a href="#folly">Folly Hub</a>. It's safer and faster. If the projects are browser-based (WebGL), you won't even need that; just your web browser will suffice.</li>
+            <li><b>Creating</b> and <b>viewing</b> projects: then you need both <a href="#tames">TamesToolkit</a> and <a href="#folly">Folly Hub</a>.</li>
+            <li><b>Hosting</b> a server: you would need to use Folly Server.</li>
+        </ul>
+        Of course, there are what you'll need only from Tames' side. There will be other requirements regarding VR and server settings (see <a href="#download">Prerequisites</a>).</p>
+    <p>In this documentation, the basics of using both Tames Toolkit and Follyverse apps are explained. The documentation is not complete yet but will be constantly improved and updated.</p>
+    <div id="tames">
+        <h2>Tames Toolkit</h2>
+        <p><a href="Tames/ttintro.html">Introduction to Tames Toolkit</a></p>
+        <p><a href="Markers/mindex.html">Marker components in Tames Toolkit</a></p>
+        <p><a href="Info/iindex.html">Text formatting on info sheets.</a></p>
+        <p><a href="Tames/ttexport.html">Building and exporting Tames projects</a></p>
+    </div>
+    <div id="folly">
+        <h2>Follyverse</h2>
+        <p><a href="Folly/fhindex.html">Introduction to Folly Hub</a></p>
+        <p><a href="Folly/fsindex.html">Introduction to Folly Server</a></p>
+    </div>
+    <div id="download">
+        <h2>Downloads</h2>
+        <p>Please follow the instruction in the landing page for respective tools:</p>
+        <p><a href="">Folly hub</a> for Windows (64bit) and Folly Hub's <a href="https://github.com/Follyverse/FollyHub">source</a> (C#) on GutHub</p>
+        <p><a href="">Folly server</a> for Windows (64bit) and its <a href="https://github.com/Follyverse/FollyServer">source</a> (Unity) on GitHub.</p>
+        <p><a href="https://github.com/Follyverse/TamesToolkit">Tames Toolkit</a>'s Unity source on GitHub.</p>
+        <h3>Prerquisites:</h3>
+        <p><a href="https://unity.com/download">Unity Hub</a>: please follow the instructions at their page to install Unity Editors.</p>  <p><b>System requirements:</b></p>
+        <ul>
+            <li>16GB RAM,</li>
+            <li>a decent graphics card (required for VR), or a powerful CPU with integrated GPU,</li>
+            <li>Windows 10 or above,</li>
+            <li>For VR: <a href="https://store.steampowered.com/about/">Steam</a> and <a href="https://store.steampowered.com/app/250820/SteamVR/">SteamVR</a></li>
+        </ul>        
+    </div>
+    <div id="author"></div>
+    <h2>Acknowledgement</h2>
+    <p>Tames Toolkit,  Follyverse and this documentation are originally developed by <b>Peiman Amini Behbahani</b> at Faculty of Architecture, CTU in Prague, in 2022 and 2023.</p>
+	<p>The web functions of both Tames Toolkit and Follyverse are based on <a href="https://riptide.tomweiland.net/manual/overview/about-riptide.html">RiptideNetworking</a> library created by <b>Tom Weiland</b>.</p>
+</body>
+</html>

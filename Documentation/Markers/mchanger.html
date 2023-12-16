@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Marker Changer</title>
+    <link rel="stylesheet" href="../darkmode.css" />
+    <style type="text/css">
+        .auto-style1 {
+            width: 595px;
+            align-content:start
+        }
+        .auto-style2 {
+            width: 250px;
+            vertical-align:top
+        }
+    </style>
+</head>
+<body>
+    <h1>Marker Changer</h1>
+    <p>To add and remove Markers see <a href="mindex.html#addremove">Add and Remove Components</a></p>
+    <p>The properties of lights and materials are set by Marker Changer components.</p>
+    <table style="width:70%">
+        <tr>
+            <td class="auto-style1">
+                <ul>
+                    <li><b>By Element</b>: the element that updates this property.</li>
+                    <li><b>Property</b>: the property that should change.</li>
+                    <li><b>Mode</b>: the changing mode (stepped, gradual or switch). </li>
+                    <li><b>Switch value</b>: if mode is set as Switch, a value between 0 and 1 must be written here to work as the switch threshold.</li>
+                    <li><b>Steps and Color Steps</b>: the list of steps (separated by space). For the accepted color names and custom colors see Appendix 1. Alternatively, you can pick colors in Color Steps (if you use this mode, the text-based steps won’t be read)</li>
+                    <li><b>Factor</b>: use this number to set the base emissive intensity for the emissive color of a material (it doesn’t apply to any other property and will be ignored if there is a changer with Intensity as its property). </li>
+                 </ul>
+                <p>You can created a flickering property by the Flicker sub-property of the changers. Each flickering property needs its own Flicker. It is <font color="red">important</font> to continue flickering the Progress’s continuity mode is set to <b>Cycle</b> or <b>Reverse</b>:</p>
+                <ul>
+                    <li><b>Property</b>: the flickering property. A Changer for this property should exist. </li>
+                    <li><b>By Material and By Light</b>: the flickering of this property will match that of the selected material or light (if they have a the same flickering property). The remaining items (below) will have no effect on the flickering if a parent material or light is set.</li>
+                    <li><b>Min and Max Flicker</b>: the minimum and maximum length of each flicker (relative to the duration of the element). If you have multiple Marker Flicker’s only the first one’s Flicker values and counts are used.</li>
+                    <li><b>Flicker Count</b>: the number of flickers.</li>
+                    <li><b>Steady Portion</b>: if this is selected there will be no flickering in a continuous portion of progress. The length of this portion is equal to: <i>(1 – min * count) / 2 </i></li>
+                    </ul>
+
+            </td>
+            <td class="auto-style2"><img alt="Marker Changer" src="../Images/mchanger.png" /> </td>
+        </tr>
+    </table>
+    <p><font color="red"><b>Important:</b></font> because of an issue in Unity, lights imported from Blender do not pass their children transforms correctly. Therefore, Tames need to correct this at the start of each Play session. If you have such a light (for example with an interaction area attached) in a Blender file, you need to use a Marker Origin component on the Blender’s file’s main object in the scene to let Tames know the model was created in Blender.</p>
+
+
+</body>
+</html>

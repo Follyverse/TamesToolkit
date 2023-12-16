@@ -1,0 +1,112 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Tames: Types of elements</title>
+    <link rel="stylesheet" href="../darkmode.css" />
+</head>
+<body>
+    <h1>Types of Elements</h1>
+    Four types of dynamic elements are possible in Tames:
+    <ul>
+    <li><b><a href="#type-3d">3D elements</a></b> that are object with a moving child object.</li>
+    <li><b>Materials</b> with possible changeable properties, including: albedo and emissive colour, U and V offsets of the main and emissive textures, and intensity of emission.</li>
+    <li><b>Lights</b> with possible changeable properties including: colour, intensity and angle (for spot lights).</li>
+    <li>Numerical or <b>custom</b> elements that are not visual and only consist of a progress value.</li>
+    </ul>
+    <p>For defining custom elements and converting scene materials or lights into interactive ones, you need to use Unity components. For 3D elements, you can either define them in 3D models or by components.</p>
+    <p>For all of these types, you can set the <a href="ttwork.html/#work">progress</a>, <a href="ttwork.html/trigger">trigger</a> and control options. For 3D elements, there is the possibility of defining complex elements. Materials and lights also have their own changer properties that should be defined.</p>
+    <div id="type-3d"></div>
+    <h2>Basic 3D modelling with Tames</h2>
+    <p>Tames requires certain characteristics in a 3D model for it to be identified as a dynamic or interactive object. These characteristics can be included in either or both the 3D modelling software and Unity Editor, and created automatically (via Marker Dynamic) or manually. </p>
+    <p>In summary, to define the movements of a 3D object, we need the movement’s path and the base direction of moving on the path. In the 3D model, these requirements can be met by child objects whose names starts with tags _mov, _path, _start and _end. Instead of _mov you can use _head if you want your element follows a person.</p>
+    <p>This tell Tames that the object _mov moves along with _path in a direction defined by _start and _end. If such tag objects are included, Tames identifies their parent object as a dynamic element. The hierarchy of these objects is important for Tames to correctly identify them.</p>
+    <img alt="Model Hierarchy" src="../Images/model-hierarchy.png" />
+    <p><font color="red"><b>Warning: </b></font> If you include a path object, the imported model that includes that object should have a readable mesh (see <a href="ttimport.html/#ttim3d">Importing 3D models</a>) </p>
+    <p><font color="red"><b>Warning: </b></font>Only the initial position of the tag objects, relative to the parent object, is recorded. Later changes to them will not affect the pathing of the latter.</p>
+    <p><font color="red"><b>Warning: </b></font>Each element can only have one tag of each kind (one path, one moving object, etc.). Additional tags are ignored. </p>
+    <p><font color="blue"><b>Note: </b></font>Only the start of the object’s name should match with the tag names. So, you can have objects named _pathsdfsdf or _path.123 and they are still valid.</p>
+    <p><font color="red"><b>Warning: </b></font>The path should be a stripe with only one segment on its width. Otherwise, Tames will not recognize it correctly. </p>
+    <h3>Sliding objects</h3>
+    <p>Sliding objects are simplified pathed objects that can only slide on a straight line. Hence, they don’t need a <i>_path</i> tags but just <i>_start</i> and <i>_end</i> ones. The moving part slides parallel to the vector between start and end not on it. Regardless of where the start and end markers are, the moving panel behaves the same as long as their vectors have the same direction and magnitude. </p>
+    <img alt="Sliding element" src="../Images/sliding.jpg" />
+    <h3>Orbiting elements</h3>
+    <p>Orbiting objects rotate around an axis. The axis is a vector between _pivot and _axis tags. A _start marker is necessary to indicate the starting angle of the orbiting. An optional _end marker determines the span of rotation (its absence means the rotation is 360 degrees). To distinguish between rotation angles under and above 180 degrees, a _mid tag is necessary for the latter to identify the larger angle between the start and end points.</p>
+    <img alt="Orbiting element" src="../Images/orbiting.jpg" />
+    <h3>Revolving elements</h3>
+    <p>Revolving objects rotate around themselves (in contrast to orbiting objects that rotate around an external axis). They are defined in conjunction with pathed or orbiting objects with the marker _up. This marker defines the revolving axis which limits their revolution when they are orbiting or moving on the path. In case of pathed objects, this axis is between _start and _up and for orbiting objects it is between _pivot and _up. If _up is on the same point as the other point of the axis, the object is deemed fixed and it will not rotate. If the _up tag is not present, the object will revolve freely (following either the orbit or path’s geometry).</p>
+    <h3>Tracking rotations</h3>
+    <p>If you include _pivot but not _axis, Tames assumes it is a free rotating object. You can include an _end as well which indicates the span of rotation. However, this span cannot be over 90° (it is default if you don’t add _end). Tracking free rotating objects can only follow people and cannot be controlled by other elements. </p>
+    <h3>Summary</h3>
+    <p>The list of all element-defining tags is in the following table: </p>
+    <p><font color="red"><b> Important: </b></font> tags <b>_start</b> and either <b>_mov </b>or<b>_head </b>must always be present.</p>
+    <table style="width: 100%;">
+        <tr>
+            <td><b>Tags</b></td>
+            <td><b>Usage</b></td>
+        </tr>
+        <tr>
+            <td>_end</td>
+            <td>Sliding element</td>
+        </tr>
+        <tr>
+            <td>_pivot, _axis</td>
+            <td>Orbiting element (full circle)</td>
+        </tr>
+        <tr>
+            <td>_end, _pivot, _axis</td>
+            <td>Orbiting element (limited angle <180˚)</td>
+        </tr>
+        <tr>
+            <td>_pivot, _axis, _mid</td>
+            <td>Orbiting element (limited angle defined by _mid)</td>
+        </tr>
+        <tr>
+            <td>_pivot, _axis, _mid, _end</td>
+            <td>Orbiting element (limited angle, defiend by _mid and _end)</td>
+        </tr>
+        <tr>
+            <td>_pivot</td>
+            <td>Free rotating tracker (only with _head), with 90° span</td>
+        </tr>
+        <tr>
+            <td>_pivot, _end</td>
+            <td>Free rotating tracker (only with _head), with span defined by _end (max 90°)</td>
+        </tr>
+        <tr>
+            <td>_path, _end</td>
+            <td>Pathed element</td>
+        </tr>
+    </table>
+    <div id="walk"></div>
+    <h3>Pushing surfaces (people's movement)</h3>
+    <p>You can limit the movement of people with walkable surfaces. A walkable surface is part of a 3D object that limits the movement of camera on it. When they are imported, their upward-facing surfaces are detected and stored as the navigable area of the space. To define an object as walkable you need to add a Marker Walk component to it. </p>
+        <img alt="Pushing surface" src="../Images/walksurf.jpg" />
+    <p>To walk smoothly in the space, the walkable surfaces must be attached on the plan and be close to each other on vertical sections (less than 30cm level difference) on the section, otherwise, the movement between them will be invalid and impossible. Of course, if the walkable objects move their attachment and proximity may change and alter the walkability on their edges. </p>
+    <p>You can assign a pushing force to a surface. A pushing force is a velocity vector that affects a person’s default moving vector. Pushing forces are useful to simulate walkways and escalators.</p>
+    <p>Defining pushing forces works similar to defining moving objects, with only differences in the marker names (we add an “f” in the beginning of the marker name’s text). Instead of _path, _start, _end, _pivot and _axis, we would have _fpath, _fstart, _wend, _fpivot and _faxis. We can have sliding, rotating and pathed pushing forces, however, the usage of the markers is different. You cannot define the markers with components in this version.</p>
+    <p>For sliding and pathed push, _fstart and _fend still indicate the direction of the push, but their distance represents the velocity (in m/s) or the force of the push. In rotating push forces, there is no start and end, but only _fpivot and _faxis that represent both the rotation axis and its angular velocity by their distance (each unit would be 360 degrees per second). The direction of rotation is determined by the direction of the axis (clockwise if you look towards the axis’ direction).</p>
+    <div id="changer"></div>
+    <h2>Changers</h2>
+    <p>Changers in material and lights are based on a structure called Changers (in Unity Editor they are set via <a href="Markers/mchanger.html"> Marker Changer</a> components). This structure modifies a property by a mode of change and a custom number of steps (minimum of two) which represent the progress value. For example, if a light is turned on, it can be done in two ways:</p>
+    <ul>
+        <li>The value of its intensity property should go from step 0 lux to step 100 lux, for example,</li>
+        <li>or the value of its colour property should go from step black to step white.</li>
+    </ul>
+    <p>The mode of change defines when and how smoothly the transition between the steps happen. There are three modes:</p>
+    <ul>
+        <li>the <i>Stepped</i> mode defines an abrupt change. So, the value of the property is always equal to one of the steps.</li>
+        <li>the <i>Gradual</i> mode defines a gradual change. The value of the property is calculated based on the progress value’s position between the steps</li>
+        <li>the <i>Switch</i> mode creates a threshold before which the property value is the first step and after it is the last.</li>
+    </ul>
+    <img alt="Changer" src="../Images/changer.jpg" />
+       <p></p>
+    <table  style="width:60%; margin:auto; table-layout:fixed">
+       <tr>
+           <td style="text-align:left"><b> <a href="ttwork.html">How Tames work? <<<</a></b></td>
+           <td style="text-align:right"><b> <a href="../Markers/mindex.html">>>> Components</a></b></td>
+       </tr>
+   </table> 
+</body>
+</html>

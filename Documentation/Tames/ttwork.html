@@ -1,0 +1,140 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Tames Toolkit Workflow</title>
+    <link rel="stylesheet" href="../darkmode.css" />
+</head>
+<body>
+    <div id="work"></div>
+    <h1>How does Tames work?</h1>
+    Tames manages dynamic elements based on their path of change. Everything in Tames has a predefined path of change and movement. For example, a sliding door only slides on a line between two points. Or, a light can only change its intensity from one value to another. Therefore, the only parameter that we need to know for an element’s update is its progress on that predefined path, which is a percentage or a number between 0 and 1 (or 0 and 100). This value is called the <i>progress</i>.
+    <h2>Duration, direction and continuity mode</h2>
+    Of course, Tames needs to know when and how the progress value changes. For example, why should the sliding door open and how fast it should? Each element has several properties that help us clarify these questions for Tames:
+    <ul>
+        <li><i>Duration</i> of a progress tells us how long (in seconds) it takes for the element to change by one length of its changing path. Its reciprocal value, speed, tells us what portion of the progress is passed in every second. This duration is linear and may not feel smooth for 3D objects.</li>
+        <li><i>Direction</i> of the progress defines if the progress value decreases, stalls or increases as time passes. The direction is applied on the speed value as a mulitiplicative factor of -1, 0 or +1.</li>
+        <li><i>Continuity mode</i>defines what happen when the element reaches the end of the path. The sliding door, for example, should stop when it reaches the end of its rail. However, a revolving door may continue to spin after each 360-degree turn. Tames allows three continuity modes: <i>stop, cycle and reverse</i>.</li>        
+    </ul>
+    <p>Let's look at a grandma clock example. The clock works based on a pendulum that swings every 1 second. This means the continuity mode of the pendulum is <i>reverse</i> because it bounces back when it reaces the end of its swing path. The clock also has three hands (seconds, minutes, and hours) that each would complete a <i>cycle</i> but within different periods. The table below show the timing and continuity mode of each element in this clock. </p>
+    <table style="width:80%;">
+        <tr>
+            <td><b>Element</b></td>
+            <td><b>Duration (s)</b></td>
+            <td><b>Continuity</b></td>
+        </tr>
+        <tr>
+            <td>Pendulum</td>
+            <td>1</td>
+            <td>Reverse</td>
+        </tr>
+        <tr>
+            <td>Seconds hand</td>
+            <td>60</td>
+            <td>Cycle</td>
+        </tr>
+          <tr>
+            <td>Minutes hand</td>
+            <td>3600</td>
+            <td>Cycle</td>
+        </tr>
+          <tr>
+            <td>Hours hand</td>
+            <td>432000 (12 hrs)</td>
+            <td>Cycle</td>
+        </tr>
+    </table>
+    <p>The above properties are essential in every automatic change. However, they don’t clarify why an element should change to begin with. This is defined by Update bases, interaction logics and <a href="#trigger">triggers</a>.</p>
+   <div id="trigger"></div>
+    <h2>Triggers (progress)</h2>
+    <p>Triggers control the direction and activation of elements' progress. For example, in the clock example above, imagine it gongs at 9:00. This means the gong element should be activated when the the hours hand reaches 9:00 that is 75% of its cycle. Assuming that the gong sound should stop after a few seconds, we can consider that it should deactivate at 9:00:10 or 75.28% of the hours hand's cycle, for example. We do this by a trigger text like below:</p>
+    <p><b>75+75.28</b></p>
+    <p>This tells tames that the gong should do nothing before 75% (of hours hand's progress) because there is no signs before it and also nothing after 75.28%. However, when the hours hand's progress is between 75% and 75.28%, the gong should activate with a positive direction.</p>
+    <p><font color="red"><b>Warning: </b></font>There should <b>not</b> be a space between values if there is +/- symbol is used becasue space means deactivation.</p>
+     <p><font color="red"><b>Warning: </b></font>Triggers only work if there is another element defined as the update parent of this element.</p>
+     <p><font color="blue"><b>Note: </b></font>You can use as many as trigger values as you wish but they should in ascending order.</p>
+     <p><font color="blue"><b>Note: </b></font>The values can be either in 0..1 range or 0..100. If all the values are under or equal to 1, Tames assume the former range. If there is even one value above 1, Tames read all values as percentages.</p>
+    <div id="areas"></div>
+    <h2>Spatial trigger (interaction areas)</h2>
+    <p>With interaction areas, the change direction is defined by presence or absence of a person within designated 3D areas, which imitate a sensor in the real world. For example, a cubic area around an automatic door can convert the presence of a person inside it to a positive direction (from closed to open) and the absence to a negative direction (from open to closed). Unlike the previous progress-based triggers, spatial triggers are defined in the 3D models not by text.    </p>
+    <p>An interaction area is a simple 3D geometry (box, sphere, or cylinder) that when a person enters it will change the direction of the progress in the attached element. Like the trigger, the direction change is based on a ternary factor (-1, 0, or +1) multiplied on the progress’s speed. There are seven ways or modes to manage direction with interaction areas. For four modes, a person (<b>head</b>) being inside or outside is associated with the direction factor, and for the next three, the moment of a <b>hand</b> entering matters.</p>
+    <table style="width: 80%;">
+        <tr>
+            <td><b>Mode</b></td>
+            <td><b>Part</b></td>
+            <td><b>Tag</b></td>
+            <td><b>Inside</b></td>
+            <td><b>Outside</b></td>
+            <td><b>On entering</b></td>
+        </tr>
+        <tr>
+            <td>Inside only</td>
+            <td>head</td>
+            <td>in</td>
+            <td>+1</td>
+            <td>0</td>
+            <td>-</td>
+        </tr>
+        <tr>
+            <td>Outside only</td>
+            <td>head</td>
+            <td>out</td>
+            <td>0</td>
+            <td>+1</td>
+            <td>-</td>
+        </tr>
+       <tr>
+            <td>Negative inside</td>
+            <td>head</td>
+            <td>neg</td>
+            <td>-1</td>
+            <td>+1</td>
+            <td>-</td>
+        </tr>
+       <tr>
+            <td>Positive inside</td>
+            <td>head</td>
+            <td>pos</td>
+            <td>+1</td>
+            <td>-1</td>
+            <td>-</td>
+        </tr>
+       <tr>
+            <td>On/Off switch</td>
+            <td>hand</td>
+            <td>1</td>
+            <td>-</td>
+            <td>-</td>
+            <td>switch between 0 and +1</td>
+        </tr>
+       <tr>
+            <td>Two-state switch</td>
+            <td>hand</td>
+            <td>2</td>
+            <td>-</td>
+            <td>-</td>
+            <td>switch between -1 and +1</td>
+        </tr>
+       <tr>
+            <td>Three-state switch</td>
+            <td>hand</td>
+            <td>3</td>
+            <td>-</td>
+            <td>-</td>
+            <td>switch along -1, 0 and +1</td>
+        </tr>
+    </table>
+    <p>There is also a manual interaction, called <b>grip</b> (with tag <i>g</i>) that overrides all other interaction and progress properties. It is activated when the hand makes a grabbing gesture inside the area. Then, the element is attached to the hand, with its progress changes as the hand moves while holding the grip.</p>
+    <p>The last type of spatial interaction is <b>distance</b>. Distance interaction works the same as the geometric interaction, with the difference that it can have multiple ranges (other than inside and outside). For example, you can have distances 1, 2, 3, and 4 which means that when the person is closer than 1m or further than 4m, the progress stops. However, it alternates direction between the steps of these distances depending on whether the inside or outside mode is selected. If two distance points are given, the progress proportionally changes to the distance between the two point.</p>
+    <p>The easiest way to use interaction areas is to create them in your 3D modelling software as simple solid objects and make them children to the object that represents your dynamic element. However, it is important to follow a few naming rules so that Tames can understand the object is an interaction area (alternatively, you can use Marker Components in Unity). The name of an interaction area starts with an underscore (_) followed by its shape (only the first three letter suffice), then another underscore, followed by the tag of its mode. For example, <i>_box_g</i> defines a grip area with the shape of a box or <i>_cyl_in</i> defines a cylindrical area that activates an element only if you are inside it. </p>
+   <p></p>
+    <table  style="width:60%; margin:auto; table-layout:fixed">
+       <tr>
+           <td style="text-align:left"><b> <a href="ttimport.html">Importing assets <<<</a></b></td>
+           <td style="text-align:right"><b> <a href="tttypes.html">>>> Types of elements</a></b></td>
+       </tr>
+   </table> 
+
+</body>
+</html>

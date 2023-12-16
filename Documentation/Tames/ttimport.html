@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Importing assets</title>
+    <link rel="stylesheet" href="../darkmode.css" />
+</head>
+<body>
+    <h1>Importing assets</h1>    
+    <div id="ttim3d"></div>
+    <h2>Importing 3D models</h2>
+    To use a 3D model, you need first to import its file into your project and then place it in your scene (as many times you wish).
+    <h3>Importing the file</h3>
+   <p>Unity is not able to create 3D models (except basic geometric forms like spheres or cubes). Therefore, you need to have your models designed in another application (Rhino, Blender, Revit, etc.), and then import it into Unity. The easiest way to do this is to drag and drop the 3D model's file from its folder into its destination folder either in Unity's project panel or File explorer. After doing this it takes a few seconds for Unity to process it.</p>
+    <p><font color="red"><b>Important</b></font>: not all CAD/BIM formats are recognised by Unity. If your models are in a BIM application, export them to FBX format before importing in Unity.</p>
+   <p><font color="red"><b>Important</b></font>: if you want to make changes to the 3D model, you need to edit the copied file in Unity's project. Modifying the original file does not reflect into your project.</p>
+   <p><font color="red"><b>Important</b></font>: however, if you modified the original file and import it again into Unity by dragging it into Unity Editor, Unity will create <b>another</b> copy of it that will get things complicated. If you want to reimport the model externally, you'd better copy it via File Explorer.</p>
+    <h3>Adjusting the imported 3D file</h3>
+    <p>Unity may need additional settings to import the file smoothly (for the <b>first time</b>). Some of them are very important for Tames to function properly. For the adjustment, click on the imported file in Unity Editor. You will see its properties in <b>Inspector</b> panel (see below). You need to check a few things (<b>do not forget to click Apply after changes you make here</b>): </p>
+    <table style="margin:auto">
+        <tr>
+            <td style="vertical-align:top; width:400px">
+                In the <b>Model</b> tab:
+                <ul>
+                    <li><b>Read/Write</b>: check this option if your model contains a <a href="tttypes.html#type-3d">_path tagged</a> element or has <a href="ttwork.html#areas">interaction areas</a>.</li>
+                    <li><b>Generate Lightmap UV</b>: check this one so for rendering consistency.</li>
+                </ul>
+            <img style="width=395px" alt="model import" src="../Images/modelimport.png" />
+            </td>           
+            <td style="vertical-align:top; width:400px">
+                In the <b>Material</b> tab you decide how materials in that 3D  model are treated:
+                <ul>
+                    <li><b>Extract Materials</b>: if you click this button, Unity will ask you to pick a folder in your Unity project where it will import the materials used in that model. After importing the materials, you will see that they replace the <b>None</b> values in the list below it.</li>
+                    <li><b>On Demand Remap</b>: alternatively, you can choose materials one by one. You need to click on the material's value or the circle on its right and select the material from the list that appears.</li>
+                    <li><font color="red">Important</font>: if the material properties are changed in the original file, they will not update in Unity after importing.</li>
+                    <li><font color="red">Important</font>: if the material's name is changed in the original file, it will appear as unassigned.</li>
+                </ul>
+                <p>Please remember that you can change the materials of individual instances of a 3D model in the scene as well (see <b>Placing models</b> below).</p>
+          <img style="width=395px" alt="model import" src="../Images/materialimport.png" />
+            </td> 
+            </tr>
+    </table>
+    <h3>Placing models in the scene</h3>
+    <p>To place a copy of a model into your scene, you just need to drag it from the <b>Project</b> panel and drop it within the <b>Hierarchy</b> or <b>Scene</b> tab. In the former case, please mind where you drop the model as it may become the child of another object,</p>
+    <p><font color="red">Terminology</font>: in Unity, the imported 3D file is called a <b>Prefab</b> and when you create an instance in your scene, the instance is called a <b>Game Object</b>.</p>
+    <p>After you placed the model into the hierarchy you can move, rotate or scale it using the buttons on the <b>Tool Box</b> (on the Scene tab) or values in its <b>Transform</b> component on the <b>Inspector</b> panel.</p>
+    <table style="margin:auto">
+        <tr>
+            <td style="width:300px; text-align:center"><img alt="toolbox" src="../Images/toolbox.png" /> </td>
+            <td style="width:300px; text-align:center"><img alt="transform" src="../Images/transform.png" /> </td>
+        </tr>
+        <tr>
+            <td style="width:300px; text-align:center">Tool Box </td>
+            <td style="width:300px; text-align:center">Transform component</td>
+        </tr>
+    </table>
+    <p>As mentioned earlier, you can change the materials of individual objects on the scene after importing them. Please note that not all objects have materials (some are just empty object. In the example bellow, we can see the materials of the object <b>Cube.005</b> in the instance of the file (prefab) that we imported earlier.</p>
+    <p>The material list is under the component <b>Mesh Renderer</b> and like above, you can change materials by clicking on the materials name or the cirvle on their right. </p>
+    <p><font color="red">Important</font>: changing the materials here only affect this selected object not other instances of its prefab (the 3D file). </p>
+    <p><font color="red">Important</font>: if a material is changed here, later changes in its prefab material will not affect this material. </p>
+     <table style="margin:auto">
+         <tr>
+             <td style="width:50%; text-align:center"> <img alt="model import" src="../Images/gohier.png" /></td>
+             <td style="width:50%; text-align:center"> <img alt="model import" src="../Images/gomat.png" /></td>
+         </tr>
+      </table>
+    <div id="image"></div>
+    <h2>Importing images and videos</h2>
+    <p>You can import image andv video files the same way as 3D models: by drag and dropping their file from File Explorer in a folder in Unity <b>Project</b> panel, or directly copying them from File Explorer.</p>
+    <p>Similarly, you also need to care about some of their settings in the <b>Inspector</b> panel. Four important settings that you should be always mindfull of are (do not forget to click on <b>Apply</b> after finishing changes):</p>
+    <table style="margin:auto">
+        <tr>
+            <td style="vertical-align:top; width:400px">               
+                <ul>
+                    <li><b>Texture Type</b>: this is specially important for URP mode. If you intend to use the texture as a <b>Normal</b> map or in custom <b>UI</b> canvases, you need to properly assign it (to <b>Normal Map</b> and <b>Sprite</b></li>
+                    <li><b>Alpha Is Transparency</b>: check this if your image has transparent part (e.g. a PNG file).</li>
+                    <li><b>Non-Power of 2</b>: if the width and height of your image are not powers of 2, Unity tends to make them so for better performance. However, this may distort the images. To prevent this, you can set this option to <b>None</b>.</li>
+                    <li><b>Read/Write</b>: if you intend to use the image for <a href="../Markers/minfo.htm">information cards</a> you need to check this option.</li>
+                </ul>
+             </td>           
+            <td style="vertical-align:top; width:400px">               
+          <img style="width=395px" alt="model import" src="../Images/imageimport.png" />
+            </td> 
+            </tr>
+    </table>
+    <p></p>
+   <table  style="width:60%; margin:auto; table-layout:fixed">
+       <tr>
+           <td style="text-align:left"><b> <a href="ttintro.html">Introduction <<<</a></b></td>
+           <td style="text-align:right"><b> <a href="ttwork.html">>>> How Tames work?</a></b></td>
+       </tr>
+   </table> 
+    </body>
+</html>

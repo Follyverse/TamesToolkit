@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Exporting and building Tames projects</title>
+    <link rel="stylesheet" href="../darkmode.css" />
+</head>
+<body>
+    <h1>Exporting, publishing and building Tames projects</h1>
+	<p>There are multiple ways that you can communicate Tames projects. The recommended way is to use <a href="#folly">bundles and Folly Hub</a> as explained at the bottom of this page.
+    <div id="source"></div>
+    <h2>The source: Unity project</h2>
+    <p>It is <b>not</b> recommended to get used to sending and <b>receiving</b> the source of your Tames project, unless you trust the other people. The reason is simple: the source of a project is an executable application with almost full access to your computer. Nevertheless, if you wish to do this, the best way is probably to create a ZIP archive of your project's files (not its root folder) and send it to the other person. Please note that you do <b>not</b> need (and better not) to include the folder <b>Library</b> in the ZIP file because it is too big and Unity will anyway create it on the receiver's end. </p>
+    <p>After receiving the project's ZIP file, you unzip it and <a href="ttintro.html#open">add</a> it normally on Unity Hub. Please mind how you unzip a project (because the project was zipped with tens of files in its root folder; so you need to create a folder for it before or on unzipping). </p>
+        
+    <div id="exe"></a> 
+        <h2>Standalone executable</h2>
+        <p>A <i>standalone</i> executable project means that you do not need any other applications (e.g., Unity or Folly Hub) to make the project work. It will be run on your computer the way any other application does. Similar to the <a href="#source">project source</a> it is unsafe to use this mode, unless you trust the producer of the app and project.</p>
+        <p>You can <i>build</i> you project for different operating systems (Windows, MacOS and Linux) that do not usually reliant on touchscreen input but mouse and keyboard (so, Tames projects cannot be built for Android and iOS). To build a project, you need to open the <b>Build Settings</b> from Unity's <b>File</b> menu. You select the operation system in <b>Target Platform</b> field and then click <b>Build</b> or <b>Build And Run</b>. If the <b>Platform</b> has not been set on <i>Windows, Mac, Linux</i>, you need to select it first and click on <b>Switch Platform</b> that will be in place of <b>Build</b> button. Please wait for a few seconds for Unity to switch the platform. Please note that you need to have Linux and Mac modules added to your Unity Editor to be able to build for these platforms (see <a href="https://docs.unity3d.com/hub/manual/AddModules.html">Add Modules</a> on Unity's website).</p>
+        <p><img alt="Build Settings" src="../Images/buildsettings.png"</p>
+    <div id="webgl"></div>
+        <h2>WebGL: for browsers</h2>
+        <p>If you wish your project to be playable in a browser, you need to build it for WebGL platform. For this purpose, after opening <b>Build Settings</b> from the <b>File</b> menu, make sure <b>WebGL</b> is selected in the <b>Platform</b>s list. If it hasn't been selected earlier, you need to click on <b>Switch Platform</b> button and wait for Unity to switch the platform. Then, click <b>Build</b> or <b>Build And Run</b>. Please note that you cannot play a WebGL build that is not located online. So, if you just <b>Build</b> your project, you cannot test it unless you first upload it on a server (for example, <a href="https://itch.io">itch.io</a>). However, you can test the project with <b>Build And Run</b></p>
+        Because of security reasons and coding complexities (read "yours truly's lack of skills" :)), some features of Tames will not be available in WebGL mode. These include voice commands, VR and multiuser features. Some other things that you'd like to remember:
+            <ul>
+                <li>You need to have the WebGL module <a href="https://docs.unity3d.com/hub/manual/AddModules.html">added</a> to your Unity Editor to be able to build for it.</li>
+                <li>You can only build for WebGL in URP mode, not HDRP.</li>
+            </ul>
+    <div id="folly"></div>
+    <h2>Folly bundles</h2>
+    <p>A <i>bundle</i> or <i>asset bundle</i> is a package made of the contents in the project, including everything that is used in the opened <b>Scene</b>. Bundles are commonly used to create custom or updated contents in video games. While they can include every sort of code, only the codes will run which are already included in the application that opens them. This is why they are relatively safe compared to the source and standalone builds because they are opened by <a href="../Folly/fhindex.html">Folly Hub</a> versions.</p>
+    <p>To create a bundle please see <a href="../Markers/mpublish.html">Publish Project</a>. After creating a bundle, Tames will ask you to select a destination to save it as a ZIP file. You can then send this ZIP file to everyone who has Folly Hub on their computer.</p>
+</body>
+</html>

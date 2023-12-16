@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Marker Progress</title>
+    <link rel="stylesheet" href="../darkmode.css" />
+    <style type="text/css">
+        .auto-style1 {
+            width: 595px;
+            align-content:start
+        }
+        .auto-style2 {
+            width: 250px;
+            vertical-align:top
+        }
+    </style>
+</head>
+<body>
+    <h1>Marker Porgress</h1>
+     <p>To add and remove Markers see <a href="mindex.html#addremove">Add and Remove Components</a></p>
+  <p>The Marker Progress component controls most of the progress of an element. </p>
+    <table style="width:70%">
+        <tr>
+            <td class="auto-style1">
+                <ul>
+                    <li><b>Continuity</b>: the continuity mode (Stop, Cycle, or Reverse) of the progress (see <a href="../Tames/ttwork.html#work">Tames workflow</a>).</li>
+                    <li><b>Steps</b>: this field turns the progress into a series of progress. If the value is only one number, it will be considered as the count of the progress divisions. If it contains more than one number, they are considered as the progress values of each step.</li>
+                    <li><b>Preset</b>: this tell Tames that when the model is loaded in Unity, where the progress initially was at. </li>
+                    <li><b>Set at</b>: this sets the progress value at the start of Play mode.</li>
+                    <li><b>Duration</b>: the duration of progress in seconds. A negative duration means the progress will have the same duration/speed as its parent. A zero duration means it will exactly follow its parent progress value.</li>
+                    <li><b>Lerp XY</b>: the lerping of the progress change. </li>
+                    <li><b>Active</b>: element is active when the play mode begins. </li>
+                </ul>
+            </td>
+            <td class="auto-style2"><img alt="Marker Progress" src="../Images/mprogress.png" /> </td>
+        </tr>
+    </table>
+</body>
+</html>

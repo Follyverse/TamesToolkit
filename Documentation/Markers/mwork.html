@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>How Tames markers work</title>
+    <link rel="stylesheet" href="../darkmode.css" />
+</head>
+<body>
+    <h1>Marker components' workflow</h1>
+       <p>Each marker component in Tames is designed to do a specific task. Usually, you will need several of them added to an object to create your desired interactive effect. Let's go over an example: assume we want a green light that blinks every three second. Below is the process we should follow:</p>
+    <ol>
+        <li><b>Interactive root</b>: the first step is to make sure the object containing the light is under the hierarchy of an object with an active <a href="mroot.html">Root</a> marker (left image). Otherwise, Tames will ignore it.</li>
+        <li><b>Changing feature</b>: next is to tell Tames what feature of that light should change. We have two options here: <b>a)</b> to make the light's <i>color</i> switch between green and black (off) and <b>b)</b> to have its <i>intensity</i> switch between 0 and 100 (for example). For either, we need to add a <a href="mchanger.html">Changer</a> marker (middle image). There, we can set the <b>Property</b> as either <i>Color</i> or <i>Intensity</i> and then put the desired steps in their respective places. Because we want a blinking effect, we need to set the <b>Mode</b> as <i>Stepped</i>.</li>
+        <li><b>Controlling the change</b>: the next step is to tell Tames when the change should occur. For this we need to add a <a href="mprogress.html">Progress</a> marker. We also have two options here <b>a)</b> set the <b>Duration</b> to <i>6</i> and <b>Continuity</b> to <i>Cycle</i> (right image), or <b>b)</b> 3 for <b>Duration</b> and <i>Reverse</i> for <b>Continuity</b>. In the first option, the 6-second duration will be divided into two 3-seconds, and they will repeat in a cyclical mode. In the second option, however, we will have two 1.5s steps but because the progress is reversed after finishing each step, the step will be applied again (hence 3s each) from its end to beginning (and vice versa).
+    </ol>
+    <table style="margin:auto; table-layout:fixed">
+        <tr>
+            <td style="vertical-align:top"><img src="../Images/ex-root.png" /></td>
+            <td style="vertical-align:top"><img src="../Images/ex-changer.png" /></td>
+            <td style="vertical-align:top"><img src="../Images/ex-progress.png" /></td>
+        </tr>
+    </table>
+    <p>Now we have our light that blinks from green to off every three seconds. We can now add additional settings. For example, we want the light to be on for two seconds and off for four. We can do it by duplicating the off step (either adding another 0 to <b>Steps</b> or another black to <b>Color Steps</b>.</p>
+    <p>We may also want to be able to switch the blinking on and off by a click. Here we will need to add a <a href="mcontrol.html">Control</a> marker that its <b>Type</b> is set to <i>Activation</i> and <b>Feature</b> to <i>Manual</i>. This means you want to be able to manually activate and deactivate this element. To make the mouse-click as the control, just write "click" in <b>Key</b> field of the marker's <b>Control</b> settings. Please note that you may also need to change <b>Distance, Angle</b> and <b>Axis</b> for more control. See <a href="minput.html">Input Setting</a> for more detail.</p>
+    <img src="../Images/ex-control.png" />
+    <table  style="width:60%; margin:auto; table-layout:fixed">
+       <tr>
+           <td style="text-align:left"><b> <a href="mindex.html">Unity Components <<<</a></b></td>
+           <td style="text-align:right"><b> <a href="mpublish.html">>>> Publishing projects</a></b></td>
+       </tr>
+   </table> 
+</body>
+</html>
